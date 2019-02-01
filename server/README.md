@@ -1,31 +1,42 @@
-# type-graphql-series
+[![Deploy to now](https://deploy.now.sh/static/button.svg)](https://deploy.now.sh/?repo=https://github.com/zeit/next.js/tree/master/examples/with-typescript)
 
-Code for: https://www.youtube.com/playlist?list=PLN3n1USn4xlma1bBu3Tloe4NyYn9Ko8Gs
+# TypeScript Next.js example
 
-# Installing
+This is a really simple project that show the usage of Next.js with TypeScript.
 
-1. Clone and install dependecies
+## How to use it?
+
+### Using `create-next-app`
+
+Execute [`create-next-app`](https://github.com/segmentio/create-next-app) with [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) or [npx](https://github.com/zkat/npx#readme) to bootstrap the example:
+
+```bash
+npx create-next-app --example with-typescript with-typescript-app
+# or
+yarn create next-app --example with-typescript with-typescript-app
 ```
-git clone https://github.com/benawad/type-graphql-series.git
-cd type-graphql-series
+
+### Download manually
+
+Download the example:
+
+```bash
+curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/with-typescript
+cd with-typescript
+```
+
+Install it and run:
+
+```bash
+npm install
+npm run dev
+# or
 yarn
+yarn dev
 ```
-2. Make sure you have PostgreSQL running on your computer with a database called `typegraphql-example` and a user who has access to that database with the username `postgres` and password `postgres`
-* Mac: https://www.codementor.io/engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb
-* Windows: https://www.guru99.com/download-install-postgresql.html
-* Docker: https://www.youtube.com/watch?v=G3gnMSyX-XM
-* Linux: you know what your doing
-* How to create a user: https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
 
-3. Make sure you have Redis running on your computer
-* Mac: https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298
-* Windows: https://redislabs.com/blog/redis-on-windows-10/
-* Linux: you know what your doing
+## The idea behind the example
 
-4. Start the server
-```
-yarn start
-```
-To verified it worked, you can go to http://localhost:4000
+Use the [@zeit/next-typescript](https://github.com/zeit/next-plugins/tree/master/packages/next-typescript) plugin to inject [@babel/preset-typescript](https://github.com/babel/babel/tree/master/packages/babel-preset-typescript) into Next.js, allowing for fast TypeScript transpilation. It also implements a `tsconfig.json` as recommended by [the @zeit/next-typescript plugin page](https://github.com/zeit/next-plugins/tree/master/packages/next-typescript/#readme).
 
-If you need any help setting this up feel free to message me on Discord: https://discord.gg/Vehs99V
+A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this in your `test` scripts, say, for your CI process.
