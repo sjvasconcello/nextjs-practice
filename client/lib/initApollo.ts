@@ -1,4 +1,8 @@
-import { ApolloClient, InMemoryCache, NormalizedCacheObject } from "apollo-boost";
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject
+} from "apollo-boost";
 import { setContext } from "apollo-link-context";
 import { createHttpLink } from "apollo-link-http";
 import fetch from "isomorphic-unfetch";
@@ -8,7 +12,6 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
 
 // Polyfill fetch() on the server (used by apollo-client)
 if (!isBrowser) {
-  // @ts-ignore
   (global as any).fetch = fetch;
 }
 
@@ -22,7 +25,6 @@ function create(initialState: any, { getToken }: Options) {
     credentials: "include"
   });
 
-  // In the header
   const authLink = setContext((_, { headers }) => {
     const token = getToken();
     return {

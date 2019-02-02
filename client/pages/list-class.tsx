@@ -1,15 +1,12 @@
-import * as React from 'react'
+import React from 'react'
 import { NextContext } from 'next'
-import Link from 'next/link';
 
 import Layout from '../components/Layout'
 import List from '../components/List'
 import IDataObject from '../interfaces'
-import { findAll } from '../utils/sample-api';
 
 type Props = {
   items: IDataObject[],
-  pathname: string,
 }
 
 class ListClass extends React.Component<Props> {
@@ -17,19 +14,20 @@ class ListClass extends React.Component<Props> {
     // Example for including initial props in a Next.js page.
     // Don't forget to include the respective types for any
     // props passed into the component
-    const items: IDataObject[] = await findAll()
+    const dataArray: IDataObject[] = [
+      { id: 101, name: 'larry' },
+      { id: 102, name: 'sam' },
+      { id: 103, name: 'jill' },
+      { id: 104, name: pathname },
+    ]
 
-    return { items, pathname }
+    return { items: dataArray }
   }
 
   render() {
-    const { items, pathname } = this.props
     return (
       <Layout title="List Example | Next.js + TypeScript Example">
-        <h1>List Example</h1>
-        <p>You are currently on: {pathname}</p>
-        <List items={items} />
-        <p><Link href='/'><a>Go home</a></Link></p>
+        <List items={this.props.items} />
       </Layout>
     )
   }
